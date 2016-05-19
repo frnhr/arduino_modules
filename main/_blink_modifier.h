@@ -16,7 +16,7 @@ class BlinkModifier: public Module
 {
   private:
     unsigned long intervals[BLINK_MODIFIER_INTERVALS_N];
-    bool button_pushed;
+    bool last_button_pushed;
   public:
     unsigned char index;
     unsigned long last_press;
@@ -25,7 +25,7 @@ class BlinkModifier: public Module
     // initialize class members:
     BlinkModifier() :
       intervals{BLINK_MODIFIER_INTERVALS},
-      button_pushed{false},
+      last_button_pushed{false},
       index{0},
       last_press{0}
     {};

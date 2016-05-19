@@ -24,8 +24,8 @@ class Blink: public Module
     // (blink has none)
   public:  // members available from everywhere
     // public member variables:
-    int ledPin;
-    int ledState;
+	int ledPin;
+	int ledState;
     unsigned long interval;
     unsigned long previousMillis;
     // public member functions:
@@ -34,8 +34,8 @@ class Blink: public Module
 
     // Initialization of member variables (both private and public):
     Blink():
-      ledState{LOW},
-      ledPin{13},
+	  ledPin{13},
+      ledState{false},
       interval{1000}
       // Defaults are often ok, no need to explicitly initialize every member here
       // though it is a good practice to do so.

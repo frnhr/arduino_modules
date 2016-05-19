@@ -11,6 +11,7 @@
 
 // Include actual modules:
 #include "_blink.ino.h"
+#include "_blink_counter.ino.h"
 #include "_blink_modifier.ino.h"
 // This include is all that is required to include a module in the code.
 // If a module is removed from here, it will not be compiled.

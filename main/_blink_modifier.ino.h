@@ -15,14 +15,14 @@ void BlinkModifier::setup()
 {
   pinMode(BLINK_MODIFIER_BUTTON, INPUT_PULLUP);
   digitalWrite(BLINK_MODIFIER_BUTTON, HIGH);
-  blink_modifier->index = 0;
+  index = 0;
   Serial.print(F("Intervals: "));
   for (int i = 0; i < BLINK_MODIFIER_INTERVALS_N; i++) {
     if (i > 0) Serial.print(F(", "));
-    Serial.print(blink_modifier->intervals[i]);
+    Serial.print(intervals[i]);
   }
   Serial.println();
-  blink->interval = blink_modifier->intervals[0];
+  blink->interval = intervals[0];
 }
 
 
@@ -31,23 +31,28 @@ void BlinkModifier::loop()
   unsigned long millis_now = millis();
   bool button_pushed = !digitalRead(BLINK_MODIFIER_BUTTON);
 
-  if (millis_now - blink_modifier->last_press < BLINK_MODIFIER_DEADTIME) {
+  if (millis_now - last_press < BLINK_MODIFIER_DEADTIME) {
     return;
   }
 
-  if (button_pushed && ! blink_modifier->button_pushed) {
-    blink_modifier->index++;
-    if (blink_modifier->index >= BLINK_MODIFIER_INTERVALS_N) {
-      blink_modifier->index = 0;
+  if (button_pushed && ! last_button_pushed) {
+    index++;
+    if (index >= BLINK_MODIFIER_INTERVALS_N) {
+      index = 0;
     }
-    blink->interval = blink_modifier->intervals[ blink_modifier->index ];
+    blink->interval = intervals[ index ];
     Serial.print(F("Interval: "));
     Serial.print(blink->interval);
     Serial.print(F(" (index: "));
-    Serial.print(blink_modifier->index);
+    Serial.print(index);
     Serial.println(F(")"));
+	#ifdef BLINK_COUNTER
+	Serial.print(F("Count: "));
+	Serial.println(blink_counter->get->count);
+  blink_counter->set->reset = true;
+	#endif
   }
-  blink_modifier->button_pushed = button_pushed;
-  blink_modifier->last_press = millis_now;
+  last_button_pushed = button_pushed;
+  last_press = millis_now;
 
 }
