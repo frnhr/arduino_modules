@@ -20,18 +20,17 @@ class Module;
 
 class ModulesRegistry
 {
-//	private:
-	public:
-		static Module* modules[MODULE_MAX_N];
-		static uint8_t count;
-		static Module* add(Module* module);
+    // private:
+  public:
+    static Module* modules[MODULE_MAX_N];
+    static uint8_t count;
+    static Module* add(Module* module);
 };
 
 Module* ModulesRegistry::add(Module* module) {
-
-	ModulesRegistry::modules[ModulesRegistry::count] = module;
-	ModulesRegistry::count++;
-	return module;
+  ModulesRegistry::modules[ModulesRegistry::count] = module;
+  ModulesRegistry::count++;
+  return module;
 };
 
 Module* ModulesRegistry::modules[MODULE_MAX_N] = {};
@@ -43,9 +42,9 @@ uint8_t ModulesRegistry::count = 0;
 
 class Module
 {
-	public:
-		virtual void setup();
-		virtual void loop();
+  public:
+    virtual void setup();
+    virtual void loop();
 };
 
 
