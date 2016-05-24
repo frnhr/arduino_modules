@@ -4,4 +4,3 @@
 lib
 .travis.yml
 platformio.ini
-extra_script.py

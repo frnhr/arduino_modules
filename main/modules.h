@@ -39,21 +39,13 @@ uint8_t ModulesRegistry::count = 0;
 
 // Implementation of Module abstract class...
 
-/*
+
 class Module
 {
-  //public:
-  static void setup();
-  static void loop();
+  public:
+    virtual void setup();
+    virtual void loop();
 };
-*/
-
-
-int freeRam () {
-  extern int __heap_start, *__brkval;
-  int v;
-  return (int) &v - (__brkval == 0 ? (int) &__heap_start : (int) __brkval);
-}
 
 
 #endif

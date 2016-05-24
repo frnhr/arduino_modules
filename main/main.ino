@@ -11,8 +11,8 @@
 
 // Include actual modules:
 #include "_blink.ino.h"
-//#include "_blink_counter.ino.h"
-//#include "_blink_modifier.ino.h"
+#include "_blink_counter.ino.h"
+#include "_blink_modifier.ino.h"
 // This include is all that is required to include a module in the code.
 // If a module is removed from here, it will not be compiled.
 // Order of includes matters.
@@ -23,27 +23,19 @@
 void setup()
 {
   Serial.begin(9600);
-  Blink::setup();
-  /*
   // Call setup() for every module:
   unsigned int i;
   for (i = 0; i < ModulesRegistry::count; i++) {
     ModulesRegistry::modules[i]->setup();
   }
-  */
 }
 
 
 void loop()
 {
-  Blink::loop();
-  /*
   // Call loop() for every module:
   unsigned int i;
   for (i = 0; i < ModulesRegistry::count; i++) {
     ModulesRegistry::modules[i]->loop();
   }
-  */
-
-  Serial.println(freeRam());
 }
