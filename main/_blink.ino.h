@@ -20,7 +20,6 @@
 // (copied from default BlinkWithoutDelay.ino example)
 void Blink::setup()
 {
-  blink->interval = 1000;
   pinMode(ledPin, OUTPUT);
 }
 
