@@ -6,15 +6,15 @@
 
 // Start every module with at least these two includes:
 #include <Arduino.h>
-#include "modules.h"
+#include "modules.hpp"
 
-// Here include any modules that depend on this one:
+// Include any modules that depend on this one here:
 // (blink module has no dependences)
 
 
 // This guard enables module's header file to be included multiple times:
-#ifndef BLINK
-#define BLINK
+#ifndef BLINK_HPP
+#define BLINK_HPP
 
 
 // Module:
@@ -24,27 +24,17 @@ class Blink: public Module
     // (blink has none)
   public:  // members available from everywhere
     // public member variables:
-	int ledPin;
-	int ledState;
+  	int ledPin;
+  	int ledState;
     unsigned long interval;
     unsigned long previousMillis;
     // public member functions:
     void setup();
     void loop();
-
-    // Initialization of member variables (both private and public):
-    Blink():
-	  ledPin{13},
-      ledState{false},
-      interval{1000}
-      // Defaults are often ok, no need to explicitly initialize every member here
-      // though it is a good practice to do so.
-      // Also, keep the same order in definitions to avoid unnecessary compiler warnings.
-    {};
 };
 
 // Instantiate the module class:
 Blink* blink = (Blink*) ModulesRegistry::add(new Blink());
 
 
-#endif  // #ifndef BLINK
+#endif  // #ifndef BLINK_HPP

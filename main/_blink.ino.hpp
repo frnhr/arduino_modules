@@ -5,13 +5,13 @@
 
 // Start every module with at least these two includes:
 #include <Arduino.h>
-#include "modules.h"
+#include "modules.hpp"
 // Also include this module's header file:
-#include "_blink.h"
+#include "_blink.hpp"
 
-// Unlike header file (.h), module implementation file (.ino.h) must not be included multiple times:
+// Unlike header file (.hpp), module implementation file (.ino.hpp) must not be included multiple times:
 #ifdef BLINK_IMPLEMENTATION
-#error The .ino.h file of a module can be included only once (and should be included from main.ino). Did you wanted to include the .h file instead?
+#error The .ino.hpp file of a module can be included only once (and should be included from main.ino). Did you wanted to include the .h file instead?
 #endif
 #define BLINK_IMPLEMENTATION
 
@@ -20,7 +20,8 @@
 // (copied from default BlinkWithoutDelay.ino example)
 void Blink::setup()
 {
-  blink->interval = 1000;
+  ledPin = 13;
+  interval = 1000;
   pinMode(ledPin, OUTPUT);
 }
 
