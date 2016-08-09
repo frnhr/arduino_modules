@@ -8,8 +8,8 @@
 #include "modules.hpp"
 
 
-#ifndef BLINK_MODIFIER
-#define BLINK_MODIFIER
+#ifndef BLINK_MODIFIER_HPP
+#define BLINK_MODIFIER_HPP
 
 
 #define BLINK_MODIFIER_INTERVALS_N 4
@@ -37,4 +37,4 @@ class BlinkModifier: public Module
 BlinkModifier* blink_modifier = (BlinkModifier*) ModulesRegistry::add(new BlinkModifier());
 
 
-#endif
+#endif  // #ifndef BLINK_MODIFIER_HPP

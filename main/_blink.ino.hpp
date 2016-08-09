@@ -45,7 +45,7 @@ void Blink::loop()
   // if (currentMillis - blink->previousMillis >= blink->interval) ...
 
   if (currentMillis - previousMillis >= interval) {
-    // save the last time you blinked the LED
+    // save the last time you blinked the LED:
     previousMillis = currentMillis;
 
     // if the LED is off turn it on and vice-versa:

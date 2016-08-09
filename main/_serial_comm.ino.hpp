@@ -64,10 +64,10 @@ void SerialComm::loop()
 
     #ifdef PROTOCOL_HPP
     // Send command to protocol module:
-    memcpy(protocol->set_command, data_received, PROTOCOL_COMMAND_LEN);
+    memcpy(protocol->setCommand, data_received, PROTOCOL_COMMAND_LEN);
     // Set printer for reply:
     Serial.flush();  // need to flush first, otherwise it might freeze (for whatever reason)
-    protocol->set_reply = &Serial;
+    protocol->setReplyPrinter = &Serial;
 
     #else  // #ifdef PROTOCOL_HPP
     Serial.print(F("Got command:\n"));

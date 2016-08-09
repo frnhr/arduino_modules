@@ -16,15 +16,16 @@
 void BlinkModifier::setup()
 {
 
-  // TODO move this to protocol:
+  // TODO move this to protocol!
   Serial.print(F("Intervals: "));
   for (int i = 0; i < BLINK_MODIFIER_INTERVALS_N; i++) {
     if (i > 0) Serial.print(F(", "));
     Serial.print(intervals[i]);
   }
-  Serial.println();
-  Serial.println("index: ");
-  Serial.println(index);
+  Serial.print("\n");
+  Serial.print("index: ");
+  Serial.print(index);
+  Serial.print("\n\n");
 
   // override default blink interval:
   // (for this to work, this module has to be included after blink module)
@@ -50,7 +51,7 @@ void BlinkModifier::loop()
   // handle the interval setter:
   if (setIntervalTo != BLINK_MODIFIER_NULL) {
     // make sure value if valid:
-    if ((setIntervalTo > 0) && (setIntervalTo < BLINK_MODIFIER_INTERVALS_N)) {
+    if ((setIntervalTo >= 0) && (setIntervalTo < BLINK_MODIFIER_INTERVALS_N)) {
       // set the private member to givven value:
       _index = setIntervalTo;
     }
@@ -62,4 +63,7 @@ void BlinkModifier::loop()
   // this way we can make sure that "_index" can be changed only via
   // `setInvervalTo` member.
   index = _index;
+
+  // actually set the interval for blink module:
+  blink->interval = intervals[_index];
 }

@@ -7,13 +7,13 @@
 
 
 #define BUTTON_PIN 2
-#define BUTTON_DEADTIME 100
+#define BUTTON_DEADTIME 200
 
 
 class Button: public Module
 {
   private:
-    bool lastPushMillis = 0;
+    unsigned long lastPushMillis = 0;
     bool stillPressed = false;
   public:
     bool pressed = false;  // it is ok to clear this flag from other modules

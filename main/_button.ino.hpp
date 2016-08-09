@@ -13,6 +13,7 @@
 void Button::setup()
 {
   pinMode(BUTTON_PIN, INPUT_PULLUP);
+  digitalWrite(BUTTON_PIN, HIGH);
 }
 
 
@@ -21,7 +22,7 @@ void Button::loop()
   // get once, use multiple times:
   unsigned long millisNow = millis();
 
-  // after a push, don't read anything for a short time:
+  // after state change, don't read anything for a short time:
   if (millisNow - lastPushMillis < BUTTON_DEADTIME) {
     return;
   }
@@ -39,8 +40,15 @@ void Button::loop()
     stillPressed = true;
   }
 
-  // if button is not pressed, clear the related flags:
+  // if button is not pressed:
   if (!buttonPushed) {
+
+    // if just released, engagne the deadzone countdown:
+    if (stillPressed) {
+      lastPushMillis = millisNow;
+    }
+
+    // clear the related flags:
     pressed = false;
     stillPressed = false;
   }
@@ -51,4 +59,21 @@ void Button::loop()
     // set a public and a private flag
   }
   */
+
+
+
+  // TODO this kind of inter-module logic is better implemented in a separate module, usually named `status`:
+
+  // use the button value:
+  #ifdef BLINK_MODIFIER_HPP
+    if (button->pressed) {
+      // set the action:
+      blink_modifier->setNextInterval = true;
+      // debug:
+      //Serial.println("PRESS");
+      // clear the flag:
+      button->pressed = false;
+    }
+  #endif
+
 }
